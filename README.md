@@ -1,1 +1,1 @@
-src for vorou.com
+src for http://vorou.com
