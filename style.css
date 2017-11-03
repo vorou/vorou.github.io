@@ -1,23 +1,21 @@
-html {
-  background: url(images/panda.jpg) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
 body {
-  margin: 50px 0 0 50px;
+  margin: 10vh 10vw;
+  font-size: 3vh;
+  line-height: 4vh;
+  font-family: 'Open Sans', sans-serif;
 }
 
-p {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 27px;
-  background-color: white;
-  display: table;
+.content {
+  min-width: 100vw;
 }
 
 a {
+  display: block;
+  margin-bottom: 1vh;
   text-decoration: none;
-  color: gray;
+  color: grey;
+}
+
+a:hover {
+  color: black;
 }
