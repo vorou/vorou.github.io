@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-45023257-1"></script>
+  <!-- Google Analytics -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());    
-    gtag('config', 'UA-45023257-1');
-  </script>  
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+    ga('create', 'UA-45023257-1', 'auto');
+    ga('require', 'eventTracker');
+    ga('send', 'pageview');    
+  </script>
+  <script async src='https://www.google-analytics.com/analytics.js'></script>
+  <script async src="autotrack.js"></script>
+  <!-- End Google Analytics -->
   <title>vorou</title>
-  <script src="https://use.fontawesome.com/0d8fdaa667.js" async></script>
+  <script async src="https://use.fontawesome.com/0d8fdaa667.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="style.css">
   <link rel="favicon" href="favicon.ico">
@@ -19,9 +22,21 @@
     <h1>hello, i'm <strong>vorou</strong></h1>
     <p>i write code for living</p>
     <ul>
-      <li><a href="https://medium.com/@vorou"><i class="fa fa-medium"></i> <span class="contact">medium</span></a></li>
-      <li><a href="https://github.com/vorou"><i class="fa fa-github"></i> <span class="contact">github</span></a></li>
-      <li><a href="mailto:voropaev.viktor@gmail.com"><i class="fa fa-envelope"></i> <span class="contact">voropaev.viktor@gmail.com</span></a></li>
+      <li>
+        <a href="https://medium.com/@vorou" ga-event-category="away" ga-event-action="medium">
+          <i class="fa fa-medium"></i> <span class="contact">medium</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/vorou" ga-event-category="away" ga-event-action="github">
+          <i class="fa fa-github"></i> <span class="contact">github</span>
+        </a>
+      </li>
+      <li>
+        <a href="mailto:voropaev.viktor@gmail.com" ga-event-category="away" ga-event-action="mail">
+          <i class="fa fa-envelope"></i> <span class="contact">voropaev.viktor@gmail.com</span>
+        </a>
+      </li>
     </ul>
   </div>
 </body>
