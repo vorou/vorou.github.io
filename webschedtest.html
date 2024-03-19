@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>vorou</title>
+    <meta charset="utf-8" />
+    <meta name="theme-color" content="#ff8000" />
+
+    <style>
+      *,
+      *:before,
+      *:after {
+        box-sizing: border-box;
+      }
+
+      html {
+        font-family: "Open Sans", sans-serif;
+        font-size: 40px;
+      }
+
+      body {
+        margin: 0;
+        border-top: 3px solid #ff8000;
+      }
+
+      .content {
+        margin: 5vh 10vw;
+      }
+
+      .accent {
+        color: #ff8000;
+      }
+
+      h1 {
+        font-size: 2rem;
+        line-height: 1em;
+        font-weight: normal;
+        margin: 0;
+      }
+
+      .subtitle {
+        margin: 0.7rem 0 0 0;
+        position: relative;
+        left: 0.1em;
+      }
+
+      ul {
+        margin-top: 0.5rem;
+        margin-left: 0.2rem;
+        padding: 0;
+        list-style-type: none;
+        line-height: 1.5;
+      }
+
+      li {
+        position: relative;
+      }
+
+      .contact-element {
+        font-size: 0.5rem;
+        height: 2em;
+      }
+
+      .post-element {
+        font-size: 0.5rem;
+        margin-bottom: 0.1rem;
+      }
+
+      .contact {
+        position: absolute;
+        top: 0;
+        left: 1.3em;
+      }
+
+      .icon {
+        width: 1em;
+        position: absolute;
+        top: 0.2em;
+      }
+
+      a {
+        /* text-decoration: none; */
+        color: #000000;
+      }
+
+      a:hover {
+        text-decoration: underscore;
+        color: #ff8000;
+      }
+
+      @media all and (max-width: 1100px) {
+        html {
+          font-size: 80px;
+        }
+
+        .content {
+          margin: 5vh 5vw;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <button onclick='STWidgetManager("ws-open")'>wat</button>
+    <script>
+      (function (q, w, e, r, t, y, u) {
+        q[t] =
+          q[t] ||
+          function () {
+            (q[t].q = q[t].q || []).push(arguments);
+          };
+        q[t].l = 1 * new Date();
+        y = w.createElement(e);
+        u = w.getElementsByTagName(e)[0];
+        y.async = true;
+        y.src = r;
+        u.parentNode.insertBefore(y, u);
+        q[t]("init", "4583ac66-d34d-4e15-85cf-80708483fc13");
+      })(
+        window,
+        document,
+        "script",
+        "https://static.servicetitan.com/webscheduler/shim.js",
+        "STWidgetManager"
+      );
+    </script>
+  </body>
+</html>
