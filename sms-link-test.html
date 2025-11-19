@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS Link Troubleshooting - MPA-5467</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        h2 {
+            color: #555;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 18px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 5px;
+        }
+
+        .info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            border-left: 4px solid #2196f3;
+        }
+
+        .info h3 {
+            color: #1976d2;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .device-info {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #666;
+            word-break: break-all;
+            margin-top: 10px;
+        }
+
+        .link-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .link-button:hover {
+            background: #45a049;
+        }
+
+        .link-button:active {
+            background: #3d8b40;
+        }
+
+        .link-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+            font-weight: normal;
+        }
+
+        .link-format {
+            font-family: monospace;
+            font-size: 11px;
+            color: rgba(255,255,255,0.8);
+            margin-top: 5px;
+            word-break: break-all;
+        }
+
+        .tracking-link {
+            background: #2196F3;
+        }
+
+        .tracking-link:hover {
+            background: #1976d2;
+        }
+
+        .sms-link {
+            background: #FF9800;
+        }
+
+        .sms-link:hover {
+            background: #f57c00;
+        }
+
+        .problematic {
+            background: #f44336;
+        }
+
+        .problematic:hover {
+            background: #d32f2f;
+        }
+
+        .instructions {
+            background: #fff3e0;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ff9800;
+        }
+
+        .instructions ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .instructions li {
+            margin-bottom: 5px;
+        }
+
+        .note {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SMS Link Troubleshooting</h1>
+        <p><strong>Ticket:</strong> MPA-5467</p>
+
+        <div class="info">
+            <h3>Testing Instructions</h3>
+            <p>Tap each link below and note what happens:</p>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>✅ Opens Messages app = WORKS</li>
+                <li>❌ Shows "Save in..." dialog = BROKEN</li>
+                <li>❌ Downloads file = BROKEN</li>
+                <li>❓ Nothing happens = BROKEN</li>
+            </ul>
+
+            <div class="device-info">
+                <strong>Your Device Info:</strong><br>
+                <span id="user-agent"></span>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <strong>📝 Please record:</strong>
+            <ul>
+                <li>Which links work vs broken</li>
+                <li>iOS version (Settings → General → About)</li>
+                <li>Chrome version (Chrome → Settings → About Chrome)</li>
+            </ul>
+        </div>
+
+        <h2>1. Tracking & Short Links</h2>
+        <p class="note">These redirect through tracking and short URL services</p>
+
+        <a href="http://click.stsend5.io/ls/click?upn=u001.EJw52B0R8sq0xC0CN-2B2jUbEpTlHgMtVy2Sg-2FM1Vl-2BOREPhkI7WAKCVVr8MA9z7Ei0EKMxMwB8mbYow3Z8Bd8EA-3D-3DZ8gc_A1pSsKZJrYRkKHKRjpQAsNvoUSL-2F0hPXyIlkcfiZMcn-2B4yumJLjGSbTwwYMA1Fh-2BFJrA3uNfOOPoBDDrw4fWeMvFeTm1RbfeAfqkknjkyUMPCCXS6p0uiFJy4PfJ8ejpir8x8nlMX9wLFRTlDg47n6tXAo13cNnYcP89QembIli6lRartHUdHSuqJ9dO7TStX4svLhdy6jTb3TwBWKtEsrn3MNdHdUOxbkKeZO1r7WY3zDkPe7wX-2Fjb-2BXvjk4ITsb9WR6F3wMysSiBN6Abqca2KmRAvpxA-2BHG0qTPJZPnx-2FTVZ48jHQqD6KKOWZiBzMsDtncfc-2BPWpQ9tffFxR4GqLDn7u8HZedjuvVrr78-2FCTjjrHlOgTszf0ub6ut7C7EUVw1Aeg29HFCj7prWumrWmw-3D-3D" class="link-button tracking-link">
+            <div class="link-label">SendGrid Tracking Link</div>
+            Tap to test
+            <div class="link-format">click.stsend5.io/ls/click?upn=...</div>
+        </a>
+
+        <a href="https://totalcomfortservices.sttn1.io/sms-opt-in" class="link-button tracking-link">
+            <div class="link-label">Short Link (Production)</div>
+            Tap to test
+            <div class="link-format">totalcomfortservices.sttn1.io/sms-opt-in</div>
+        </a>
+
+        <h2>2. Direct SMS Links - Standard Formats</h2>
+        <p class="note">Direct SMS URLs without tracking</p>
+
+        <a href="sms:+15555551234?body=I%20would%20like%20to%20sign%20up%20for%20marketing%20text%20messages!" class="link-button sms-link">
+            <div class="link-label">Standard Format (Android/Most Devices)</div>
+            Tap to test
+            <div class="link-format">sms:+15555551234?body=...</div>
+        </a>
+
+        <a href="sms:+15555551234&body=I%20would%20like%20to%20sign%20up%20for%20marketing%20text%20messages!" class="link-button sms-link">
+            <div class="link-label">iOS Format (Ampersand)</div>
+            Tap to test
+            <div class="link-format">sms:+15555551234&body=...</div>
+        </a>
+
+        <a href="sms:+15555551234" class="link-button sms-link">
+            <div class="link-label">Simple Format (No Message Body)</div>
+            Tap to test
+            <div class="link-format">sms:+15555551234</div>
+        </a>
+
+        <h2>3. Problematic Formats</h2>
+        <p class="note">These formats are known to have issues</p>
+
+        <a href="sms:+15555551234;?&body=I%20would%20like%20to%20sign%20up%20for%20marketing%20text%20messages!" class="link-button problematic">
+            <div class="link-label">Current Production Format (BROKEN)</div>
+            Tap to test
+            <div class="link-format">sms:+15555551234;?&body=...</div>
+        </a>
+
+        <a href="sms:+15555551234;?body=I%20would%20like%20to%20sign%20up%20for%20marketing%20text%20messages!" class="link-button problematic">
+            <div class="link-label">Semicolon + Question Mark</div>
+            Tap to test
+            <div class="link-format">sms:+15555551234;?body=...</div>
+        </a>
+
+        <a href="sms://+15555551234?body=I%20would%20like%20to%20sign%20up%20for%20marketing%20text%20messages!" class="link-button sms-link">
+            <div class="link-label">Double Slash Format</div>
+            Tap to test
+            <div class="link-format">sms://+15555551234?body=...</div>
+        </a>
+
+        <h2>4. Additional Test Cases</h2>
+
+        <a href="sms:5555551234?body=Test" class="link-button sms-link">
+            <div class="link-label">Without Plus Sign</div>
+            Tap to test
+            <div class="link-format">sms:5555551234?body=Test</div>
+        </a>
+
+        <a href="sms:+1-555-555-1234?body=Test" class="link-button sms-link">
+            <div class="link-label">With Dashes</div>
+            Tap to test
+            <div class="link-format">sms:+1-555-555-1234?body=Test</div>
+        </a>
+
+        <div class="info" style="margin-top: 30px;">
+            <h3>Next Steps</h3>
+            <p>Share your results with the development team, including:</p>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>Device: iPhone model</li>
+                <li>iOS version</li>
+                <li>Browser: Chrome version</li>
+                <li>Which links worked (✅) vs broken (❌)</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('user-agent').textContent = navigator.userAgent;
+
+        // Log clicks for debugging
+        document.querySelectorAll('.link-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const format = this.querySelector('.link-format').textContent;
+                console.log('Clicked:', format);
+                console.log('Full URL:', this.href);
+            });
+        });
+    </script>
+</body>
+</html>
