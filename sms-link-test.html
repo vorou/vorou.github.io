@@ -151,40 +151,42 @@
             margin-top: 5px;
             font-style: italic;
         }
+
+        details {
+            margin-top: 30px;
+        }
+
+        summary {
+            cursor: pointer;
+            color: #555;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 4px;
+            border-bottom: 2px solid #e0e0e0;
+            user-select: none;
+        }
+
+        summary:hover {
+            background: #e8e8e8;
+        }
+
+        details[open] summary {
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>SMS Link Troubleshooting</h1>
-        <p><strong>Ticket:</strong> MPA-5467</p>
 
-        <div class="info">
-            <h3>Testing Instructions</h3>
-            <p>Tap each link below and note what happens:</p>
-            <ul style="margin-left: 20px; margin-top: 10px;">
-                <li>✅ Opens Messages app = WORKS</li>
-                <li>❌ Shows "Save in..." dialog = BROKEN</li>
-                <li>❌ Downloads file = BROKEN</li>
-                <li>❓ Nothing happens = BROKEN</li>
-            </ul>
-
-            <div class="device-info">
-                <strong>Your Device Info:</strong><br>
-                <span id="user-agent"></span>
-            </div>
+        <div class="device-info">
+            <strong>Your Device Info:</strong><br>
+            <span id="user-agent"></span>
         </div>
 
-        <div class="instructions">
-            <strong>📝 Please record:</strong>
-            <ul>
-                <li>Which links work vs broken</li>
-                <li>iOS version (Settings → General → About)</li>
-                <li>Chrome version (Chrome → Settings → About Chrome)</li>
-            </ul>
-        </div>
-
-        <h2>1. Tracking & Short Links</h2>
-        <p class="note">These redirect through tracking and short URL services</p>
+        <h2>Primary Test Links</h2>
 
         <a href="http://click.stsend5.io/ls/click?upn=u001.EJw52B0R8sq0xC0CN-2B2jUbEpTlHgMtVy2Sg-2FM1Vl-2BOREPhkI7WAKCVVr8MA9z7Ei0EKMxMwB8mbYow3Z8Bd8EA-3D-3DZ8gc_A1pSsKZJrYRkKHKRjpQAsNvoUSL-2F0hPXyIlkcfiZMcn-2B4yumJLjGSbTwwYMA1Fh-2BFJrA3uNfOOPoBDDrw4fWeMvFeTm1RbfeAfqkknjkyUMPCCXS6p0uiFJy4PfJ8ejpir8x8nlMX9wLFRTlDg47n6tXAo13cNnYcP89QembIli6lRartHUdHSuqJ9dO7TStX4svLhdy6jTb3TwBWKtEsrn3MNdHdUOxbkKeZO1r7WY3zDkPe7wX-2Fjb-2BXvjk4ITsb9WR6F3wMysSiBN6Abqca2KmRAvpxA-2BHG0qTPJZPnx-2FTVZ48jHQqD6KKOWZiBzMsDtncfc-2BPWpQ9tffFxR4GqLDn7u8HZedjuvVrr78-2FCTjjrHlOgTszf0ub6ut7C7EUVw1Aeg29HFCj7prWumrWmw-3D-3D" class="link-button tracking-link">
             <div class="link-label">SendGrid Tracking Link</div>
@@ -198,72 +200,57 @@
             <div class="link-format">totalcomfortservices.sttn1.io/sms-opt-in</div>
         </a>
 
-        <h2>2. Direct SMS Links - Standard Formats</h2>
-        <p class="note">Direct SMS URLs without tracking</p>
-
         <a href="sms:+15555551234?body=I%20would%20like%20to%20sign%20up%20for%20marketing%20text%20messages!" class="link-button sms-link">
-            <div class="link-label">Standard Format (Android/Most Devices)</div>
+            <div class="link-label">Direct SMS Link - Standard Format</div>
             Tap to test
             <div class="link-format">sms:+15555551234?body=...</div>
         </a>
 
-        <a href="sms:+15555551234&body=I%20would%20like%20to%20sign%20up%20for%20marketing%20text%20messages!" class="link-button sms-link">
-            <div class="link-label">iOS Format (Ampersand)</div>
-            Tap to test
-            <div class="link-format">sms:+15555551234&body=...</div>
-        </a>
+        <details>
+            <summary>Additional Test Formats</summary>
 
-        <a href="sms:+15555551234" class="link-button sms-link">
-            <div class="link-label">Simple Format (No Message Body)</div>
-            Tap to test
-            <div class="link-format">sms:+15555551234</div>
-        </a>
+            <a href="sms:+15555551234&body=I%20would%20like%20to%20sign%20up%20for%20marketing%20text%20messages!" class="link-button sms-link">
+                <div class="link-label">iOS Format (Ampersand)</div>
+                Tap to test
+                <div class="link-format">sms:+15555551234&body=...</div>
+            </a>
 
-        <h2>3. Problematic Formats</h2>
-        <p class="note">These formats are known to have issues</p>
+            <a href="sms:+15555551234" class="link-button sms-link">
+                <div class="link-label">Simple Format (No Message Body)</div>
+                Tap to test
+                <div class="link-format">sms:+15555551234</div>
+            </a>
 
-        <a href="sms:+15555551234;?&body=I%20would%20like%20to%20sign%20up%20for%20marketing%20text%20messages!" class="link-button problematic">
-            <div class="link-label">Current Production Format (BROKEN)</div>
-            Tap to test
-            <div class="link-format">sms:+15555551234;?&body=...</div>
-        </a>
+            <a href="sms:+15555551234;?&body=I%20would%20like%20to%20sign%20up%20for%20marketing%20text%20messages!" class="link-button problematic">
+                <div class="link-label">Current Production Format (BROKEN)</div>
+                Tap to test
+                <div class="link-format">sms:+15555551234;?&body=...</div>
+            </a>
 
-        <a href="sms:+15555551234;?body=I%20would%20like%20to%20sign%20up%20for%20marketing%20text%20messages!" class="link-button problematic">
-            <div class="link-label">Semicolon + Question Mark</div>
-            Tap to test
-            <div class="link-format">sms:+15555551234;?body=...</div>
-        </a>
+            <a href="sms:+15555551234;?body=I%20would%20like%20to%20sign%20up%20for%20marketing%20text%20messages!" class="link-button problematic">
+                <div class="link-label">Semicolon + Question Mark</div>
+                Tap to test
+                <div class="link-format">sms:+15555551234;?body=...</div>
+            </a>
 
-        <a href="sms://+15555551234?body=I%20would%20like%20to%20sign%20up%20for%20marketing%20text%20messages!" class="link-button sms-link">
-            <div class="link-label">Double Slash Format</div>
-            Tap to test
-            <div class="link-format">sms://+15555551234?body=...</div>
-        </a>
+            <a href="sms://+15555551234?body=I%20would%20like%20to%20sign%20up%20for%20marketing%20text%20messages!" class="link-button sms-link">
+                <div class="link-label">Double Slash Format</div>
+                Tap to test
+                <div class="link-format">sms://+15555551234?body=...</div>
+            </a>
 
-        <h2>4. Additional Test Cases</h2>
+            <a href="sms:5555551234?body=Test" class="link-button sms-link">
+                <div class="link-label">Without Plus Sign</div>
+                Tap to test
+                <div class="link-format">sms:5555551234?body=Test</div>
+            </a>
 
-        <a href="sms:5555551234?body=Test" class="link-button sms-link">
-            <div class="link-label">Without Plus Sign</div>
-            Tap to test
-            <div class="link-format">sms:5555551234?body=Test</div>
-        </a>
-
-        <a href="sms:+1-555-555-1234?body=Test" class="link-button sms-link">
-            <div class="link-label">With Dashes</div>
-            Tap to test
-            <div class="link-format">sms:+1-555-555-1234?body=Test</div>
-        </a>
-
-        <div class="info" style="margin-top: 30px;">
-            <h3>Next Steps</h3>
-            <p>Share your results with the development team, including:</p>
-            <ul style="margin-left: 20px; margin-top: 10px;">
-                <li>Device: iPhone model</li>
-                <li>iOS version</li>
-                <li>Browser: Chrome version</li>
-                <li>Which links worked (✅) vs broken (❌)</li>
-            </ul>
-        </div>
+            <a href="sms:+1-555-555-1234?body=Test" class="link-button sms-link">
+                <div class="link-label">With Dashes</div>
+                Tap to test
+                <div class="link-format">sms:+1-555-555-1234?body=Test</div>
+            </a>
+        </details>
     </div>
 
     <script>
